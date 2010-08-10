@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.description = "Ruby MPD client gem"
   s.authors = ['Michał Krzyżanowski']
   s.require_path = "lib"
+  s.add_dependency("rubytree")
   s.files = Dir.glob("lib/**/*")
   s.test_files = Dir.glob("test/**/*")
 end

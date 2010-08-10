@@ -1,4 +1,15 @@
-require "test_helper"
+require "rubygems"
+require "mocha"
+
+gem "test-unit"
+
+require "test/unit"
+require "lib/mpc"
+require "tree"
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
 class MpcTest < Test::Unit::TestCase
   
   def setup
