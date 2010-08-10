@@ -199,6 +199,9 @@ class Mpc
    puts("delete #{song.to_s}")
  end
 
+ def move_song(from, to)
+  puts("move #{from.to_s} #{to.to_s}")
+ end
  private
 
   def puts(command)
