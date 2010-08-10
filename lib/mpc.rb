@@ -117,7 +117,7 @@ class Mpc
  end
 
  def current_song
-   parse_song_list(puts("currentsong"))
+   parse_song_list(puts("currentsong")).first
  end
 
  def stats
@@ -125,7 +125,7 @@ class Mpc
  end
 
  def ping
-   song = current_song[0]
+   song = current_song
    unless status[:state] == "stop"
      output = {:song_time=>song[:time],:time=>status[:time].split(":").first,:artist=>song[:artist],:title=>song[:title],:file=>song[:file],:album=>song[:album],:id=>song[:id]}
    else
