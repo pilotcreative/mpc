@@ -132,4 +132,9 @@ class MpcTest < Test::Unit::TestCase
     
     assert_equal(@root.to_s,@mpc.list_library.to_s)
   end
+
+  test "move_song should send move command" do
+    @mpc.expects(:puts).with("move 1 3")
+    @mpc.move_song(1,3)
+  end
 end
