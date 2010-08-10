@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "mpc"
-  s.version = "0.2"
-  s.date = "2010-08-09"
+  s.version = "0.3"
+  s.date = "2010-08-10"
   s.summary = "MPD client gem"
   s.email = "michal.krzyzanowski+mpc@gmail.com"
   s.description = "Ruby MPD client gem"
