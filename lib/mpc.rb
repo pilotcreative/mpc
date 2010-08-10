@@ -232,7 +232,7 @@ class Mpc
     status_hash = Hash.new
     string.each do |line|
       key, value = line.chomp.split(": ", 2) 
-      status_hash[key.parameterize.underscore.to_sym] = value
+      status_hash[key.to_sym] = value
     end 
     status_hash
   end
