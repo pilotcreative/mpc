@@ -134,7 +134,13 @@ class Mpc
  end
 
  def list_playlists
-  to_hash(puts("listplaylists"))
+   output = Array.new
+   puts("listplaylists").each do |line|
+     if line.match(/\Aplaylist\:(.*)\n\Z/)
+       output << to_hash(line)
+     end
+   end
+   output
  end
 
  def list_playlist_info(name)

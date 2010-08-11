@@ -137,4 +137,13 @@ class MpcTest < Test::Unit::TestCase
     @mpc.expects(:puts).with("move 1 3")
     @mpc.move_song(1,3)
   end
+
+  test "list_playlists should return array with playlists" do
+    @mpc.stubs(:puts).returns("playlist: asd\nLast-Modified: 2010-08-02T08:39:28Z\nplaylist: foo\nLast-Modified: 2010-08-11T07:35:43Z\nplaylist: nowa\nLast-Modified: 2010-08-02T07:39:52Z\n")
+    expected_output = Array.new
+    expected_output << {:playlist => "asd"}
+    expected_output << {:playlist => "foo"}
+    expected_output << {:playlist => "nowa"}
+    assert_equal(expected_output,@mpc.list_playlists)
+  end
 end
