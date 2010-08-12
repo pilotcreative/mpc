@@ -146,4 +146,44 @@ class MpcTest < Test::Unit::TestCase
     expected_output << {:playlist => "nowa"}
     assert_equal(expected_output,@mpc.list_playlists)
   end
+
+  test "ping method should return hash with informations about song" do
+    @mpc.stubs(:current_song).returns({
+        :Date=> "2001",
+        :Id=> "23",
+        :Title=> "ToNieMy",
+        :file=> "Paktofonika - Kinematografia/ToNieMy.mp3",
+        :Time=> "227",
+        :Album=> "Kinematografia",
+        :Track=> "6",
+        :Pos=> "5",
+        :Genre=> "Hip-Hop",
+        :Artist=> "Paktofonika"} )
+    @mpc.stubs(:status).returns({
+             :bitrate=> "128",
+             :song=> "5",
+             :volume=> "-1",
+             :audio=> "44100:24:2",
+             :consume=> "0",
+             :repeat=> "0",
+             :nextsong=> "6",
+             :time=> "102:227",
+             :playlist=> "54",
+             :state=> "play",
+             :playlistlength=> "23",
+             :nextsongid=> "24",
+             :xfade=> "0",
+             :random=> "0",
+             :songid=> "23",
+             :single=> "0"})
+    expected_output = {
+              :title=>"ToNieMy",
+              :file=>"Paktofonika - Kinematografia/ToNieMy.mp3",
+              :artist=>"Paktofonika",
+              :album=>"Kinematografia",
+              :song_time=>"227",
+              :id=>"23",
+              :time=>"102"}
+    assert_equal(expected_output,@mpc.ping)
+  end
 end

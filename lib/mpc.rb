@@ -125,9 +125,8 @@ class Mpc
  end
 
  def ping
-   song = current_song
    unless status[:state] == "stop"
-     output = {:song_time=>song[:time],:time=>status[:time].split(":").first,:artist=>song[:artist],:title=>song[:title],:file=>song[:file],:album=>song[:album],:id=>song[:id]}
+     output = {:song_time=>current_song[:Time],:time=>status[:time].split(":").first,:artist=>current_song[:Artist],:title=>current_song[:Title],:file=>current_song[:file],:album=>current_song[:Album],:id=>current_song[:Id]}
    else
      output = {:song_time=>0,:time=>0,:artist=>nil,:title=>nil,:file=>nil,:album=>nil,:id=>nil}
    end
