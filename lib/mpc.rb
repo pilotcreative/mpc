@@ -126,7 +126,7 @@ class Mpc
 
  def ping
    unless status[:state] == "stop"
-     output = {:song_time=>current_song[:Time],:time=>status[:time].split(":").first,:artist=>current_song[:Artist],:title=>current_song[:Title],:file=>current_song[:file],:album=>current_song[:Album],:id=>current_song[:Id]}
+     output = {:song_time=>current_song[:time],:time=>status[:time].split(":").first,:artist=>current_song[:artist],:title=>current_song[:title],:file=>current_song[:file],:album=>current_song[:album],:id=>current_song[:id]}
    else
      output = {:song_time=>0,:time=>0,:artist=>nil,:title=>nil,:file=>nil,:album=>nil,:id=>nil}
    end
@@ -237,7 +237,7 @@ class Mpc
     status_hash = Hash.new
     string.each do |line|
       key, value = line.chomp.split(": ", 2) 
-      status_hash[key.to_sym] = value
+      status_hash[key.downcase.to_sym] = value
     end 
     status_hash
   end
