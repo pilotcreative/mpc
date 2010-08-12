@@ -149,16 +149,16 @@ class MpcTest < Test::Unit::TestCase
 
   test "ping method should return hash with informations about song" do
     @mpc.stubs(:current_song).returns({
-        :Date=> "2001",
-        :Id=> "23",
-        :Title=> "ToNieMy",
+        :date=> "2001",
+        :id=> "23",
+        :title=> "ToNieMy",
         :file=> "Paktofonika - Kinematografia/ToNieMy.mp3",
-        :Time=> "227",
-        :Album=> "Kinematografia",
-        :Track=> "6",
-        :Pos=> "5",
-        :Genre=> "Hip-Hop",
-        :Artist=> "Paktofonika"} )
+        :time=> "227",
+        :album=> "Kinematografia",
+        :track=> "6",
+        :pos=> "5",
+        :genre=> "Hip-Hop",
+        :artist=> "Paktofonika"} )
     @mpc.stubs(:status).returns({
              :bitrate=> "128",
              :song=> "5",
