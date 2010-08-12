@@ -84,11 +84,11 @@ class Mpc
  end
 
  def volume_up
-  setvol(volume.to_i + 20)
+  set_volume(volume.to_i + 20)
  end
 
  def volume_down
-  setvol(volume.to_i - 20)
+  set_volume(volume.to_i - 20)
  end
 
  def seek(time, song = nil)
