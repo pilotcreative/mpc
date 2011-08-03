@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.add_dependency("rubytree")
 
   s.add_development_dependency("mocha")
-  s.add_development_dependency("test-unit")
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
