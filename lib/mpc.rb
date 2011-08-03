@@ -1,0 +1,3 @@
+module Mpc
+  # Your code goes here...
+end
