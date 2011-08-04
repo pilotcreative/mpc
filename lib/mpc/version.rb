@@ -1,3 +1,3 @@
-module Mpc
-  VERSION = "0.9"
+class Mpc
+  VERSION = "0.9.1"
 end
