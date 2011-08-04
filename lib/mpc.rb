@@ -1,5 +1,6 @@
 require "socket"
 require "mpc/song"
+
 class Mpc
 
   @@regexps = {

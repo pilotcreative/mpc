@@ -1,14 +1,16 @@
-class Mpc::Song
+class Mpc
+  class Song
 
-  def initialize(options)
-    @options = options
-  end
+    def initialize(options)
+      @options = options
+    end
 
-  def to_s
-    if @options[:Artist].empty? || @options[:Title].empty?
-      @options[:file]
-    else
-      "#{@options[:Artist]} - #{@options[:Title]}"
+    def to_s
+      if @options[:Artist].empty? || @options[:Title].empty?
+        @options[:file]
+      else
+        "#{@options[:Artist]} - #{@options[:Title]}"
+      end
     end
   end
 end
