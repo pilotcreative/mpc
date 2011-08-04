@@ -2,14 +2,25 @@ require "socket"
 class Mpc
 
   @@regexps = {
-    "ACK"  => /\AACK \[(\d+)\@(\d+)\] \{(.*)\} (.+)\Z/,
-    "OK"   => /\AOK\n\Z/,
-    "FILE" => /\Afile\:(.*)\Z/,
+    "ACK"     => /\AACK \[(\d+)\@(\d+)\] \{(.*)\} (.+)\Z/,
+    "OK"      => /\AOK\n\Z/,
+    "FILE"    => /\Afile\:(.*)\Z/,
+    "CONNECT" => /\AOK MPD (\d+)\.(\d+).(\d+)\n\Z/
   }
 
+  attr_accessor :host, :port
   def initialize(host = "127.0.0.1", port = 6600)
-    @socket = TCPSocket.new(host, port)
+    @host = host
+    @port = port
+  end
+
+  def connect
+    @socket = socket
     @socket.gets
+  end
+
+  def disconnect
+    @socket.close
   end
 
   def play
@@ -34,6 +45,14 @@ class Mpc
 
   private
 
+  def socket
+    TCPSocket.new(@host, @port)
+  end
+
+  def gets_from_socket
+    @socket.gets
+  end
+
   def send_command(command)
     @socket.puts(command)
     get_response
@@ -41,7 +60,7 @@ class Mpc
 
   def get_response
     response = ""
-    while line = @socket.gets do
+    while line = gets_from_socket do
       if @@regexps["OK"].match(line)
         return response
       elsif error = @@regexps["ACK"].match(line)
