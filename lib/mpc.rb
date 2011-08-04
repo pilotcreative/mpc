@@ -73,4 +73,17 @@ class Mpc
     end
     response
   end
+
+  def to_hash(string)
+    output = Hash.new
+    string.each_line do |line|
+      key, value = line.chomp.split(": ", 2)
+      output[key.to_sym] = value
+    end
+    output
+  end
+
+  def status
+    to_hash(send_command("status"))
+  end
 end
