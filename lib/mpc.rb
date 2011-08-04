@@ -73,7 +73,31 @@ class Mpc
   def repeat?
     status[:repeat] == "1"
   end
+
+  def volume(level = nil)
+    set_volume(level) if level
+    get_volume
+  end
+
+  def volume_up
+    set_volume(volume.to_i + 20)
+  end
+
+  def volume_down
+    set_volume(volume.to_i - 20)
+  end
+
   private
+
+  def get_volume
+    status[:volume]
+  end
+
+  def set_volume(level)
+    level = 0 if level < 0
+    level = 100 if level > 100
+    send_command "setvol #{level.to_s}"
+  end
 
   def socket
     TCPSocket.new(@host, @port)
