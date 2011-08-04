@@ -3,10 +3,17 @@ require "test_helper"
 class MpcTest < MiniTest::Unit::TestCase
 
   def setup
-    @socket_mock = stub("TCPSocket", :puts => nil, :gets => nil)
+    @socket_mock = stub("TCPSocket", :puts => nil, :gets => nil, :close => nil)
     @mpc = Mpc.new
     @mpc.stubs(:socket).returns(@socket_mock)
     @mpc.connect
+  end
+
+  def test_library_raises_error_if_there_is_no_connection
+    @mpc.disconnect
+    assert_raises(StandardError){
+      @mpc.play
+    }    
   end
 
   def test_gets_raises_an_exception_on_ACK_response

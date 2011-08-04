@@ -21,6 +21,7 @@ class Mpc
 
   def disconnect
     @socket.close
+    @socket = nil
   end
 
   def play
@@ -54,6 +55,7 @@ class Mpc
   end
 
   def send_command(command)
+    raise StandardError unless @socket
     @socket.puts(command)
     get_response
   end
