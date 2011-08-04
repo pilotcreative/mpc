@@ -1,4 +1,5 @@
 require "socket"
+require "mpc/song"
 class Mpc
 
   @@regexps = {
@@ -85,6 +86,11 @@ class Mpc
 
   def volume_down
     set_volume(volume.to_i - 20)
+  end
+
+  def current_song
+    options = to_hash(send_command("currentsong"))
+    Song.new(options)
   end
 
   private
