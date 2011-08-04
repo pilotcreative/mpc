@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "mpc"
 
-  s.add_dependency("rubytree")
+  # s.add_dependency("rubytree")
 
   s.add_development_dependency("mocha")
 
