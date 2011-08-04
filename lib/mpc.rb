@@ -28,12 +28,24 @@ class Mpc
     send_command "play"
   end
 
+  def playing?
+    status[:state] == "play"
+  end
+
   def stop
     send_command "stop"
   end
 
+  def stopped?
+    status[:state] == "stop"
+  end
+
   def pause
     send_command "pause 1"
+  end
+
+  def paused?
+    status[:state] == "pause"
   end
 
   def next
