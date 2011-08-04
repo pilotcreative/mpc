@@ -56,6 +56,23 @@ class Mpc
     send_command "previous"
   end
 
+  def random(state = nil)
+    state ||= bool_to_int(!random?)
+    send_command "random #{state}"
+  end
+
+  def random?
+    status[:random] == "1"
+  end
+
+  def repeat(state = nil)
+    state ||= bool_to_int(!repeat?)
+    send_command "repeat #{state}"
+  end
+
+  def repeat?
+    status[:repeat] == "1"
+  end
   private
 
   def socket
@@ -97,5 +114,9 @@ class Mpc
 
   def status
     to_hash(send_command("status"))
+  end
+
+  def bool_to_int(bool)
+    bool == true ? 1 : 0
   end
 end
