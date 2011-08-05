@@ -93,6 +93,9 @@ class Mpc
     song = to_hash(send_command("currentsong"))
     Song.new(song)
   end
+
+  def info
+    "State: #{status[:state]} Volume: #{volume}% Artists: #{stats[:artists]} Albums: #{stats[:albums]} Songs: #{stats[:songs]}"
   end
 
   private
@@ -146,6 +149,10 @@ class Mpc
 
   def status
     to_hash(send_command("status"))
+  end
+
+  def stats
+    to_hash(send_command("stats"))
   end
 
   def bool_to_int(bool)
