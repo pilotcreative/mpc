@@ -90,8 +90,9 @@ class Mpc
   end
 
   def current_song
-    options = to_hash(send_command("currentsong"))
-    Song.new(options)
+    song = to_hash(send_command("currentsong"))
+    Song.new(song)
+  end
   end
 
   private
