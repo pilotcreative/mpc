@@ -5,11 +5,23 @@ class Mpc
       @options = options
     end
 
+    def artist
+      @options[:Artist] || ""
+    end
+
+    def title
+      @options[:Title] || ""
+    end
+
+    def album
+      @options[:Album] || ""
+    end
+
     def to_s
-      if @options[:Artist].empty? || @options[:Title].empty?
+      if !artist and !title
         @options[:file]
       else
-        "#{@options[:Artist]} - #{@options[:Title]}"
+        "#{artist} - #{title}"
       end
     end
   end
